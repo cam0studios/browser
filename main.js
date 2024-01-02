@@ -5,5 +5,6 @@ if(!Object.hasOwn(window.executed)) {
   btn.addEventListener("click",() => {
     window.open("https://google.com");
   });
+  btn.style = "z-index:1000; position:absolute;";
   document.body.appendChild(btn);
 }
