@@ -9,3 +9,6 @@ Instructions:
 ```
 <img src=# onerror="fetch('https://raw.githubusercontent.com/cam0studios/browser/main.js').then(e => e.text()).then(e => eval(e))">
 ```
+For easy future use:
+1. Click the hamburger menu and hit "Save As", choose a name
+2. Next time you open up SparkVUE, click "Open Saved Experiment" and click that file
