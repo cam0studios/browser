@@ -1,4 +1,4 @@
-if(!Object.hasOwn(window.executed)) {
+if(!Object.hasOwn(window,executed)) {
   var script=document.createElement("script");script.src="https://cdn.jsdelivr.net/npm/eruda";document.body.append(script);script.onload=function(){eruda.init();console.log("Script Loaded: Thank you for using SparXSS!")}
   window.executed = true;
   let btn = document.createElement("button");
@@ -14,3 +14,6 @@ if(!Object.hasOwn(window.executed)) {
   btn.style.left = 0;
   document.body.appendChild(btn);
 }
+document.addEventListener("keydown",() => {
+  delete window.executed;
+});
