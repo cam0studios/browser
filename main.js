@@ -6,6 +6,11 @@ if(!Object.hasOwn(window.executed)) {
   btn.addEventListener("click",() => {
     window.open("https://google.com");
   });
-  btn.style = "z-index:1000; position:absolute;";
+  btn.style.position = "fixed";
+  btn.style.zIndex = "10000";
+  btn.style.color = "#000000";
+  btn.style.backgroundColor = "#ffffff";
+  btn.style.top = 0;
+  btn.style.left = 0;
   document.body.appendChild(btn);
 }
