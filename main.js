@@ -1,4 +1,3 @@
-alert("run");
 if(!Object.hasOwn(window,"executed")) {
   var script=document.createElement("script");
   script.src="https://cdn.jsdelivr.net/npm/eruda";
@@ -9,7 +8,8 @@ if(!Object.hasOwn(window,"executed")) {
   }
   window.executed = true;
   let btn = document.createElement("button");
-  btn.innerHTML = "Open Google";
+  btn.id = "toggle";
+  btn.innerHTML = "Open Browser";
   btn.addEventListener("click",() => {
     window.open("https://google.com");
   });
@@ -21,6 +21,3 @@ if(!Object.hasOwn(window,"executed")) {
   btn.style.left = 0;
   document.body.appendChild(btn);
 }
-document.addEventListener("keydown",() => {
-  delete window.executed;
-});
