@@ -22,8 +22,8 @@ if(!Object.hasOwn(window,"executed")) {
       bg.style.zIndex = "9999";
       bg.style.top = 0;
       bg.style.left = 0;
-      bg.width = innerWidth;
-      bg.height = innerHeight;
+      bg.style.width = "100%";
+      bg.style.height = "100%";
       bg.style.backgroundColor = "#222222"
       document.body.appendChild(bg);
     } else {
