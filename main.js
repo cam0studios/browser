@@ -7,17 +7,35 @@ if(!Object.hasOwn(window,"executed")) {
     console.log("Eruda loaded");
   }
   window.executed = true;
-  let btn = document.createElement("button");
-  btn.id = "toggle";
-  btn.innerHTML = "Open Browser";
-  btn.addEventListener("click",() => {
-    window.open("https://google.com");
+  let toggleBtn = document.createElement("button");
+  toggleBtn.id = "toggleBtn";
+  toggleBtn.innerHTML = "Open";
+  toggleBtn.addEventListener("click",() => {
+    if(!Object.hasOwn(window,"isOpen")) window.isOpen = false;
+    window.isOpen = !window.isOpen;
+    if(window.isOpen) {
+      let toggleBtn = document.getElementById("toggleBtn");
+      toggleBtn.innerHTML = "Close";
+      let bg = document.createElement("div");
+      bg.id = "bg";
+      bg.style.position = "fixed";
+      bg.style.zIndex = "9999";
+      bg.style.top = 0;
+      bg.style.left = 0;
+      bg.style.width = innerWidth;
+      bg.style.height = innerHeight;
+      bg.style.backgroundColor = "#222222"
+      document.body.appendChild(bg);
+    } else {
+      document.getElementById("bg").remove();
+      document.getElementById("toggleBtn").innerHTML = "Open";
+    }
   });
-  btn.style.position = "fixed";
-  btn.style.zIndex = "10000";
-  btn.style.color = "#000000";
-  btn.style.backgroundColor = "#ffffff";
-  btn.style.top = 0;
-  btn.style.left = 0;
-  document.body.appendChild(btn);
+  toggleBtn.style.position = "fixed";
+  toggleBtn.style.zIndex = "10000";
+  toggleBtn.style.color = "#000000";
+  toggleBtn.style.backgroundColor = "#ffffff";
+  toggleBtn.style.top = 0;
+  toggleBtn.style.left = 0;
+  document.body.appendChild(toggleBtn);
 }
