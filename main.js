@@ -24,7 +24,7 @@ if(!Object.hasOwn(window,"executed")) {
       bg.style.left = 0;
       bg.style.width = "100%";
       bg.style.height = "100%";
-      bg.style.backgroundColor = "#222222"
+      bg.style.backgroundColor = "#555555"
       document.body.appendChild(bg);
     } else {
       document.getElementById("bg").remove();
