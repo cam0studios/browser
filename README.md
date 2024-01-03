@@ -1,5 +1,5 @@
 # Browser
-A browser for sparkvue
+A browser for sparkvue\n
 Instructions:
 1. Open SparkVUE from your app launcher
 2. Click "Build New Experiment"
