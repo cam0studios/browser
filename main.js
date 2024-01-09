@@ -1,11 +1,5 @@
 if(!Object.hasOwn(window,"executed")) {
-  var bookmarks = [];
-  if (localStorage.getItem("bookmarks") == null) {
-    bookmarks = ["google.com","discord.com"];
-    localStorage.setItem("bookmarks",JSON.stringify(bookmarks));
-  } else {
-    bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
-  }
+  var bookmarks = ["google.com","discord.com","pikachat.rocks"];
   var script=document.createElement("script");
   script.src="https://cdn.jsdelivr.net/npm/eruda";
   document.body.append(script);
@@ -84,7 +78,7 @@ window.toggleOpen = function () {
     });
     bookBar.style.position = "fixed";
     bookBar.style.left = "5px";
-    bookBar.style.top = "20px";
+    bookBar.style.top = "45px";
     bookBar.style.color = "#ffffff";
     bookBar.id = "bookBar";
     document.getElementById("bg").appendChild(bookBar);
@@ -94,7 +88,6 @@ window.toggleOpen = function () {
     addMark.innerHTML = "+";
     addMark.style.position = "fixed";
     addMark.style.left = "10px";
-    addMark.style.top = (45+bookmarks.length*25)+"px";
     addMark.style.backgroundColor = "#228800";
     addMark.style.color = "#ffffff";
     document.getElementById("bg").appendChild(addMark);
@@ -104,38 +97,60 @@ window.toggleOpen = function () {
     tempOpen.innerHTML = "Open URL";
     tempOpen.style.position = "fixed";
     tempOpen.style.left = "10px";
-    tempOpen.style.top = (70+bookmarks.length*25)+"px";
     tempOpen.style.backgroundColor = "#228800";
     tempOpen.style.color = "#ffffff";
     document.getElementById("bg").appendChild(tempOpen);
+    updateHeight();
+    let save = document.createElement("button");
+    save.style.backgroundColor = "#228800";
+    save.style.color = "#ffffff";
+    save.style.position = "fixed";
+    save.style.left = "10px";
+    save.style.top = "5px";
+    save.innerHTML = "Save Session";
+    save.addEventListener("click",() => {
+      navigator.clipboard.writeText(btoa(bookmarks.join("|")));
+    });
+    document.getElementById("bg").appendChild(save);
+    let load = document.createElement("button");
+    load.style.backgroundColor = "#882200";
+    load.style.color = "#ffffff";
+    load.style.position = "fixed";
+    load.style.left = "10px";
+    load.style.top = "25px";
+    load.innerHTML = "Load Session";
+    load.addEventListener("click",() => {
+      bookmarks = atob(prompt("session?")).split("|");
+      let bookBar = document.getElementById("bookBar");
+      bookBar.innerHTML = "Bookmarks:<br>";
+      bookmarks.forEach((e,i) => {
+        bookBar.innerHTML += getBookmarkHTML(e,i);
+      });
+      updateHeight();
+    });
+    document.getElementById("bg").appendChild(load);
   } else {
     document.getElementById("bg").remove();
     document.getElementById("toggleBtn").innerHTML = "Open";
   }
 }
 function getBookmarkHTML(url,i) {
-  return `<img src="https://${url}/favicon.ico" style="height:15px" id="favicon${i}">
-  <button style="color:#ffffff;background-color:#444444;height:25px" id="bookmark${i}" onclick=window.open('https://${url}')>${url}</button>
-  <button style="color:#ffffff;background-color:#882200" id="remove${i}" onclick="removeBookmark(${i})">x</button>
-  <br>`;
+  return `<div id="bookmark${i}"><img src="https://${url}/favicon.ico" style="height:15px">
+  <button style="color:#ffffff;background-color:#444444;height:25px" onclick=window.open('https://${url}')>${url}</button>
+  <button style="color:#ffffff;background-color:#882200" onclick="removeBookmark(${i})">x</button>
+  <br></div>`;
 }
 function addBookmark(url) {
-  let b = JSON.parse(localStorage.getItem("bookmarks"));
-  b.push(url);
   bookmarks.push(url);
-  localStorage.setItem("bookmarks",JSON.stringify(b));
-  document.querySelector("#bookBar").innerHTML += getBookmarkHTML(url,b.length-1);
-  document.querySelector("#addMark").style.top = (45+bookmarks.length*25)+"px";
-  document.querySelector("#tempOpen").style.top = (70+bookmarks.length*25)+"px";
+  document.querySelector("#bookBar").innerHTML += getBookmarkHTML(url,bookmarks.length-1);
+  updateHeight();
 }
 function removeBookmark(i) {
-  let b = JSON.parse(localStorage.getItem("bookmarks"));
-  b.splice(i,1);
   bookmarks.splice(i,1);
-  localStorage.setItem("bookmarks",JSON.stringify(b));
   document.querySelector("#bookmark"+i).remove();
-  document.querySelector("#remove"+i).remove();
-  document.querySelector("#favicon"+i).remove();
-  document.querySelector("#addMark").style.top = (45+bookmarks.length*25)+"px";
-  document.querySelector("#tempOpen").style.top = (70+bookmarks.length*25)+"px";
+  updateHeight();
+}
+function updateHeight() {
+  document.querySelector("#addMark").style.top = (70+bookmarks.length*25)+"px";
+  document.querySelector("#tempOpen").style.top = (95+bookmarks.length*25)+"px";
 }
