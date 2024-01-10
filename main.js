@@ -1,4 +1,4 @@
 if(typeof executed === 'undefined') {
   executed = true;
-  alert("run");
+  document.write("it works");
 }
