@@ -1,3 +1,4 @@
-if(!Object.hasOwn(window,"executed")) {
+if(typeof executed === 'undefined') {
+  executed = true;
   alert("run");
 }
