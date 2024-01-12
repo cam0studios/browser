@@ -26,11 +26,11 @@ if(typeof executed === 'undefined') {
   toggleBtn.style.height = "20px";
   toggleBtn.addEventListener("mousedown", (e) => {
     console.log("down");
-    window.mouseDownOnToggle = true;
+    mouseDownOnToggle = true;
   });
   document.addEventListener("mousemove",(e) => {
-    if(window.mouseDownOnToggle) {
-      window.dragToggle = true;
+    if(mouseDownOnToggle) {
+      dragToggle = true;
       let toggle = document.getElementById("toggleBtn");
       let x = e.clientX;
       let y = e.clientY;
@@ -44,18 +44,18 @@ if(typeof executed === 'undefined') {
   });
   toggleBtn.addEventListener("mouseup",(e) => {
     console.log("up");
-    if(window.dragToggle) {
-      window.toggleOpen();
-      window.dragToggle = false;
+    if(dragToggle) {
+      toggleOpen();
+      dragToggle = false;
     }
-    window.mouseDownOnToggle = false;
+    mouseDownOnToggle = false;
   });
   document.body.appendChild(toggleBtn);
   
   function toggleOpen () {
-    if(!Object.hasOwn(window,"isOpen")) window.isOpen = false;
-    window.isOpen = !window.isOpen;
-    if(window.isOpen) {
+    if(!Object.hasOwn(window,"isOpen")) isOpen = false;
+    isOpen = !isOpen;
+    if(isOpen) {
       let toggleBtn = document.getElementById("toggleBtn");
       toggleBtn.innerHTML = "Close";
       let bg = document.createElement("div");
