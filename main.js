@@ -47,8 +47,6 @@ if(typeof executed === 'undefined') {
   toggleBtn.addEventListener("mouseup",(e) => {
     console.log("up");
     if(window.dragToggle) {
-      localStorage.setItem("toggleX",document.getElementById("toggleBtn").style.left);
-      localStorage.setItem("toggleY",document.getElementById("toggleBtn").style.top);
       window.toggleOpen();
       window.dragToggle = false;
     }
