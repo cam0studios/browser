@@ -1,13 +1,15 @@
 if(typeof executed === 'undefined') {
-  var bookmarks = ["google.com","discord.com","pikachat.rocks"];
-  var script=document.createElement("script");
-  script.src="https://cdn.jsdelivr.net/npm/eruda";
-  document.body.append(script);
-  script.onload = function(){
-    eruda.init();
-    console.log("Eruda loaded");
-  }
-  window.executed = true;
+  (function(){
+    var script=document.createElement("script");
+    script.src="https://cdn.jsdelivr.net/npm/eruda";
+    document.body.append(script);
+    script.onload=function(){
+      eruda.init();
+      console.log("Script Loaded: Thank you for using SparXSS!");
+    }
+  })();
+  var bookmarks = ["google.com","discord.com"];
+  executed = true;
   let toggleBtn = document.createElement("button");
   toggleBtn.id = "toggleBtn";
   toggleBtn.innerHTML = "Open";
@@ -55,7 +57,7 @@ if(typeof executed === 'undefined') {
   document.body.appendChild(toggleBtn);
 }
 
-window.toggleOpen = function () {
+function toggleOpen () {
   if(!Object.hasOwn(window,"isOpen")) window.isOpen = false;
   window.isOpen = !window.isOpen;
   if(window.isOpen) {
