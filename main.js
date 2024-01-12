@@ -14,7 +14,7 @@ if(typeof executed === 'undefined') {
   toggleBtn.id = "toggleBtn";
   toggleBtn.innerHTML = "Open";
   toggleBtn.addEventListener("click",() => {
-    window.toggleOpen();
+    toggleOpen();
   });
   toggleBtn.style.position = "fixed";
   toggleBtn.style.zIndex = "10000";
