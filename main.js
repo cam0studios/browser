@@ -20,10 +20,8 @@ if(typeof executed === 'undefined') {
   toggleBtn.style.zIndex = "10000";
   toggleBtn.style.color = "#ffffff";
   toggleBtn.style.backgroundColor = "#444444";
-  toggleBtn.style.left = 0;
-  if(toggleBtn.style.left>innerWidth-25) toggleBtn.style.left=innerwidth-25;
-  toggleBtn.style.top = 0;
-  if(toggleBtn.style.top>innerHeight-10) toggleBtn.style.top=innerHeight-10;
+  toggleBtn.style.left = "70px";
+  toggleBtn.style.top = "5px";
   toggleBtn.style.width = "50px";
   toggleBtn.style.height = "20px";
   toggleBtn.addEventListener("mousedown", (e) => {
