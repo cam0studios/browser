@@ -109,15 +109,22 @@ if(typeof executed === 'undefined') {
         navigator.clipboard.writeText(btoa(bookmarks.join("|")));
       });
       document.getElementById("bg").appendChild(save);
+      let loadTxt = document.createElement("input");
+      loadTxt.type = "text";
+      loadTxt.id = "loadTxt";
+      loadTxt.style.position = "fixed";
+      loadTxt.style.left = "10px";
+      loadTxt.style.top = "25px";
+      loadTxt.style.width = "50px";
       let load = document.createElement("button");
       load.style.backgroundColor = "#882200";
       load.style.color = "#ffffff";
       load.style.position = "fixed";
-      load.style.left = "10px";
+      load.style.left = "70px";
       load.style.top = "25px";
       load.innerHTML = "Load Session";
       load.addEventListener("click",() => {
-        bookmarks = atob(prompt("session?")).split("|");
+        bookmarks = atob(document.getElementById("loadTxt").value).split("|");
         let bookBar = document.getElementById("bookBar");
         bookBar.innerHTML = "Bookmarks:<br>";
         bookmarks.forEach((e,i) => {
