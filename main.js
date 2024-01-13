@@ -116,6 +116,7 @@ if(typeof executed === 'undefined') {
       loadTxt.style.left = "10px";
       loadTxt.style.top = "25px";
       loadTxt.style.width = "50px";
+      document.getElementById("bg").appendChild(loadTxt);
       let load = document.createElement("button");
       load.style.backgroundColor = "#882200";
       load.style.color = "#ffffff";
