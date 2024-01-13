@@ -83,6 +83,7 @@ if(typeof executed === 'undefined') {
       urlIn.type = "text";
       urlIn.style.position = "fixed";
       urlIn.style.left = "10px";
+      urlIn.style.width = "150px";
       urlIn.id = "urlIn";
       document.getElementById("bg").appendChild(urlIn);
       let addMark = document.createElement("button");
@@ -90,7 +91,7 @@ if(typeof executed === 'undefined') {
       addMark.id = "addMark";
       addMark.innerHTML = "+";
       addMark.style.position = "fixed";
-      addMark.style.left = "70px";
+      addMark.style.left = "170px";
       addMark.style.backgroundColor = "#228800";
       addMark.style.color = "#ffffff";
       document.getElementById("bg").appendChild(addMark);
@@ -121,13 +122,13 @@ if(typeof executed === 'undefined') {
       loadTxt.style.position = "fixed";
       loadTxt.style.left = "10px";
       loadTxt.style.top = "25px";
-      loadTxt.style.width = "50px";
+      loadTxt.style.width = "150px";
       document.getElementById("bg").appendChild(loadTxt);
       let load = document.createElement("button");
       load.style.backgroundColor = "#882200";
       load.style.color = "#ffffff";
       load.style.position = "fixed";
-      load.style.left = "70px";
+      load.style.left = "170px";
       load.style.top = "25px";
       load.innerHTML = "Load Session";
       load.addEventListener("click",() => {
