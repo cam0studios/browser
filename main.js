@@ -79,17 +79,23 @@ if(typeof executed === 'undefined') {
       bookBar.style.color = "#ffffff";
       bookBar.id = "bookBar";
       document.getElementById("bg").appendChild(bookBar);
+      let urlIn = document.createElement("input");
+      urlIn.type = "text";
+      urlIn.style.position = "fixed";
+      urlIn.style.left = "10px";
+      urlIn.id = "urlIn";
+      document.getElementById("bg").appendChild(urlIn);
       let addMark = document.createElement("button");
-      addMark.addEventListener("click",() => {addBookmark(prompt('url'))});
+      addMark.addEventListener("click",() => {addBookmark(document.getElementById("urlIn").value)});
       addMark.id = "addMark";
       addMark.innerHTML = "+";
       addMark.style.position = "fixed";
-      addMark.style.left = "10px";
+      addMark.style.left = "70px";
       addMark.style.backgroundColor = "#228800";
       addMark.style.color = "#ffffff";
       document.getElementById("bg").appendChild(addMark);
       let tempOpen = document.createElement("button");
-      tempOpen.addEventListener("click",() => {window.open("https://"+prompt("url"))});
+      tempOpen.addEventListener("click",() => {window.open("https://"+document.getElementById("urlIn").value)});
       tempOpen.id = "tempOpen";
       tempOpen.innerHTML = "Open URL";
       tempOpen.style.position = "fixed";
@@ -158,5 +164,6 @@ if(typeof executed === 'undefined') {
   function updateHeight() {
     document.querySelector("#addMark").style.top = (70+bookmarks.length*25)+"px";
     document.querySelector("#tempOpen").style.top = (95+bookmarks.length*25)+"px";
+    document.querySelector("#urlIn").style.top = (70+bookmarks.length*25)+"px";
   }
 }
