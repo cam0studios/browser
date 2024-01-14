@@ -96,7 +96,7 @@ if(typeof executed === 'undefined') {
       addMark.style.color = "#ffffff";
       document.getElementById("bg").appendChild(addMark);
       let tempOpen = document.createElement("button");
-      tempOpen.addEventListener("click",() => {window.open("https://"+document.getElementById("urlIn").value)});
+      tempOpen.addEventListener("click",() => {window.open(getURL(document.getElementById("urlIn").value))});
       tempOpen.id = "tempOpen";
       tempOpen.innerHTML = "Open URL";
       tempOpen.style.position = "fixed";
@@ -146,9 +146,12 @@ if(typeof executed === 'undefined') {
       document.getElementById("toggleBtn").innerHTML = "Open";
     }
   }
+  function getURL(url) {
+    return url.split("https://")[0].trim()==""?url:"https://"+url;
+  }
   function getBookmarkHTML(url,i) {
-    return `<div id="bookmark${i}"><img src="https://${url}/favicon.ico" style="height:15px">
-    <button style="color:#ffffff;background-color:#444444;height:25px" onclick=window.open('https://${url}')>${url}</button>
+    return `<div id="bookmark${i}"><img src="${getURL(url)}/favicon.ico" style="height:15px">
+    <button style="color:#ffffff;background-color:#444444;height:25px" onclick=window.open(${getURL(url)})>${url}</button>
     <button style="color:#ffffff;background-color:#882200" onclick="removeBookmark(${i})">x</button>
     <br></div>`;
   }
