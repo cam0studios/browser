@@ -25,10 +25,12 @@ if(typeof executed === 'undefined') {
   toggleBtn.style.width = "50px";
   toggleBtn.style.height = "20px";
   toggleBtn.addEventListener("mousedown", (e) => {
-    console.log("down");
     mouseDownOnToggle = true;
   });
   document.addEventListener("mousemove",(e) => {
+    if(typeof mouseDownOnToggle == "undefined") {
+      mouseDownOnToggle == false;
+    }
     if(mouseDownOnToggle) {
       dragToggle = true;
       let toggle = document.getElementById("toggleBtn");
@@ -43,7 +45,6 @@ if(typeof executed === 'undefined') {
     }
   });
   toggleBtn.addEventListener("mouseup",(e) => {
-    console.log("up");
     if(dragToggle) {
       toggleOpen();
       dragToggle = false;
@@ -151,13 +152,13 @@ if(typeof executed === 'undefined') {
   }
   function getBookmarkHTML(url,i) {
     return `<div id="bookmark${i}"><img src="${getURL(url)}/favicon.ico" style="height:15px">
-    <button style="color:#ffffff;background-color:#444444;height:25px" onclick=window.open(${getURL(url)})>${url}</button>
+    <button style="color:#ffffff;background-color:#444444;height:25px" onclick="window.open(${getURL(url)})">${url}</button>
     <button style="color:#ffffff;background-color:#882200" onclick="removeBookmark(${i})">x</button>
     <br></div>`;
   }
   function addBookmark(url) {
     bookmarks.push(url);
-    document.querySelector("#bookBar").innerHTML += getBookmarkHTML(url,bookmarks.length-1);
+    document.querySelector("#bookBar").innerHTML += getBookmarkHTML(getURL(url).split("https://").slice(1,-1).join("https://"),bookmarks.length-1);
     updateHeight();
   }
   function removeBookmark(i) {
