@@ -30,6 +30,7 @@ if(typeof executed === 'undefined') {
     document.querySelector("#addMark").style.top = (90+bookmarks.length*25)+"px";
     document.querySelector("#tempOpen").style.top = (115+bookmarks.length*25)+"px";
     document.querySelector("#urlIn").style.top = (90+bookmarks.length*25)+"px";
+    document.querySelector("#modeBtn").style.top = (75+bookmarks.length*25)+"px";
   }
   window.getBookmarkHTML = function(url,i) {
     console.log(getURL(url,true));
@@ -182,8 +183,8 @@ if(typeof executed === 'undefined') {
       });
       document.getElementById("bg").appendChild(load);
       let modeBtn = document.createElement("button");
+      modeBtn.id = "modeBtn";
       modeBtn.style.position = "fixed";
-      modeBtn.style.top = "35px";
       modeBtn.style.left = "5px";
       modeBtn.innerHTML = "Temporary";
       modeBtn.addEventListener("click",() => {
@@ -195,6 +196,7 @@ if(typeof executed === 'undefined') {
           document.getElementById("modeBtn").innerHTML = "Temporary";
         }
       });
+      document.getElementById("bg").appendChild(modeBtn);
     } else {
       document.getElementById("bg").remove();
       document.getElementById("toggleBtn").innerHTML = "Open";
