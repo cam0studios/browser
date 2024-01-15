@@ -151,6 +151,7 @@ if(typeof executed === 'undefined') {
     return url.split("https://")[0].trim()==""?url:"https://"+url;
   }
   function getBookmarkHTML(url,i) {
+    console.log(getURL(url));
     return `<div id="bookmark${i}"><img src="${getURL(url)}/favicon.ico" style="height:15px">
     <button style="color:#ffffff;background-color:#444444;height:25px" onclick="window.open('${getURL(url)}')">${url}</button>
     <button style="color:#ffffff;background-color:#882200" onclick="removeBookmark(${i})">x</button>
