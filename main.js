@@ -181,13 +181,13 @@ if(typeof executed === 'undefined') {
         updateHeight();
       });
       document.getElementById("bg").appendChild(load);
+      window.mode = false;
       let modeBtn = document.createElement("button");
       modeBtn.id = "modeBtn";
       modeBtn.style.position = "fixed";
       modeBtn.style.left = "5px";
       modeBtn.innerHTML = "Temporary";
       modeBtn.addEventListener("click",() => {
-        if(typeof mode == "undefined") window.mode = false;
         mode = !mode;
         if(mode) {
           document.getElementById("modeBtn").innerHTML = "Permanent";
