@@ -11,24 +11,36 @@ if(typeof executed === 'undefined') {
   var bookmarks = ["google.com","discord.com"];
   executed = true;
 
-  window.getURL = function(url) {
-    return url.split("https://")[0].trim()==""?url:"https://"+url;
+  window.getURL = function(url,mode) {
+    if(mode) {
+      let u = url.split("https://").splice(0,1);
+      return u.join("https://");
+    } else {
+      return url.split("https://")[0].trim()==""?url:"https://"+url;
+    }
+  }
+  window.openURL = function(url) {
+    if(mode) {
+      window.location.href = getURL(url);
+    } else {
+      window.open(getURL(url));
+    }
   }
   window.updateHeight = function() {
-    document.querySelector("#addMark").style.top = (70+bookmarks.length*25)+"px";
-    document.querySelector("#tempOpen").style.top = (95+bookmarks.length*25)+"px";
-    document.querySelector("#urlIn").style.top = (70+bookmarks.length*25)+"px";
+    document.querySelector("#addMark").style.top = (90+bookmarks.length*25)+"px";
+    document.querySelector("#tempOpen").style.top = (115+bookmarks.length*25)+"px";
+    document.querySelector("#urlIn").style.top = (90+bookmarks.length*25)+"px";
   }
   window.getBookmarkHTML = function(url,i) {
-    console.log(getURL(url));
+    console.log(getURL(url,true));
     return `<div id="bookmark${i}"><img src="${getURL(url)}/favicon.ico" style="height:15px">
-    <button style="color:#ffffff;background-color:#444444;height:25px" onclick="window.open('${getURL(url)}')">${url}</button>
+    <button style="color:#ffffff;background-color:#444444;height:25px" onclick="openURL('${getURL(url)}')">${getURL(url,true)}</button>
     <button style="color:#ffffff;background-color:#882200" onclick="removeBookmark(${i})">x</button>
     <br></div>`;
   }
   window.addBookmark = function(url) {
-    bookmarks.push(url);
-    document.querySelector("#bookBar").innerHTML += getBookmarkHTML(getURL(url).split("https://").slice(1,-1).join("https://"),bookmarks.length-1);
+    bookmarks.push(getURL(url,true));
+    document.querySelector("#bookBar").innerHTML += getBookmarkHTML(url,bookmarks.length-1);
     updateHeight();
   }
   window.removeBookmark = function(i) {
@@ -169,6 +181,20 @@ if(typeof executed === 'undefined') {
         updateHeight();
       });
       document.getElementById("bg").appendChild(load);
+      let modeBtn = document.createElement("button");
+      modeBtn.style.position = "fixed";
+      modeBtn.style.top = "35px";
+      modeBtn.style.left = "5px";
+      modeBtn.innerHTML = "Temporary";
+      modeBtn.addEventListener("click",() => {
+        if(typeof mode == "undefined") window.mode = false;
+        mode = !mode;
+        if(mode) {
+          document.getElementById("modeBtn").innerHTML = "Permanent";
+        } else {
+          document.getElementById("modeBtn").innerHTML = "Temporary";
+        }
+      });
     } else {
       document.getElementById("bg").remove();
       document.getElementById("toggleBtn").innerHTML = "Open";
