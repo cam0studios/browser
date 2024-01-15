@@ -30,7 +30,7 @@ if(typeof executed === 'undefined') {
     document.querySelector("#addMark").style.top = (90+bookmarks.length*25)+"px";
     document.querySelector("#tempOpen").style.top = (115+bookmarks.length*25)+"px";
     document.querySelector("#urlIn").style.top = (90+bookmarks.length*25)+"px";
-    document.querySelector("#modeBtn").style.top = (75+bookmarks.length*25)+"px";
+    document.querySelector("#modeBtn").style.top = (65+bookmarks.length*25)+"px";
   }
   window.getBookmarkHTML = function(url,i) {
     console.log(getURL(url,true));
