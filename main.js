@@ -145,7 +145,6 @@ if(typeof executed === 'undefined') {
       tempOpen.style.backgroundColor = "#228800";
       tempOpen.style.color = "#ffffff";
       document.getElementById("bg").appendChild(tempOpen);
-      updateHeight();
       let save = document.createElement("button");
       save.style.backgroundColor = "#228800";
       save.style.color = "#ffffff";
@@ -197,6 +196,7 @@ if(typeof executed === 'undefined') {
         }
       });
       document.getElementById("bg").appendChild(modeBtn);
+      updateHeight();
     } else {
       document.getElementById("bg").remove();
       document.getElementById("toggleBtn").innerHTML = "Open";
