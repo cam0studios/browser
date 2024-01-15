@@ -10,6 +10,33 @@ if(typeof executed === 'undefined') {
   })();
   var bookmarks = ["google.com","discord.com"];
   executed = true;
+
+  window.getURL = function(url) {
+    return url.split("https://")[0].trim()==""?url:"https://"+url;
+  }
+  window.updateHeight = function() {
+    document.querySelector("#addMark").style.top = (70+bookmarks.length*25)+"px";
+    document.querySelector("#tempOpen").style.top = (95+bookmarks.length*25)+"px";
+    document.querySelector("#urlIn").style.top = (70+bookmarks.length*25)+"px";
+  }
+  window.getBookmarkHTML = function(url,i) {
+    console.log(getURL(url));
+    return `<div id="bookmark${i}"><img src="${getURL(url)}/favicon.ico" style="height:15px">
+    <button style="color:#ffffff;background-color:#444444;height:25px" onclick="window.open('${getURL(url)}')">${url}</button>
+    <button style="color:#ffffff;background-color:#882200" onclick="removeBookmark(${i})">x</button>
+    <br></div>`;
+  }
+  window.addBookmark = function(url) {
+    bookmarks.push(url);
+    document.querySelector("#bookBar").innerHTML += getBookmarkHTML(getURL(url).split("https://").slice(1,-1).join("https://"),bookmarks.length-1);
+    updateHeight();
+  }
+  window.removeBookmark = function(i) {
+    bookmarks.splice(i,1);
+    document.querySelector("#bookmark"+i).remove();
+    updateHeight();
+  }
+  
   let toggleBtn = document.createElement("button");
   toggleBtn.id = "toggleBtn";
   toggleBtn.innerHTML = "Open";
@@ -146,30 +173,5 @@ if(typeof executed === 'undefined') {
       document.getElementById("bg").remove();
       document.getElementById("toggleBtn").innerHTML = "Open";
     }
-  }
-  function getURL(url) {
-    return url.split("https://")[0].trim()==""?url:"https://"+url;
-  }
-  function getBookmarkHTML(url,i) {
-    console.log(getURL(url));
-    return `<div id="bookmark${i}"><img src="${getURL(url)}/favicon.ico" style="height:15px">
-    <button style="color:#ffffff;background-color:#444444;height:25px" onclick="window.open('${getURL(url)}')">${url}</button>
-    <button style="color:#ffffff;background-color:#882200" onclick="removeBookmark(${i})">x</button>
-    <br></div>`;
-  }
-  function addBookmark(url) {
-    bookmarks.push(url);
-    document.querySelector("#bookBar").innerHTML += getBookmarkHTML(getURL(url).split("https://").slice(1,-1).join("https://"),bookmarks.length-1);
-    updateHeight();
-  }
-  function removeBookmark(i) {
-    bookmarks.splice(i,1);
-    document.querySelector("#bookmark"+i).remove();
-    updateHeight();
-  }
-  function updateHeight() {
-    document.querySelector("#addMark").style.top = (70+bookmarks.length*25)+"px";
-    document.querySelector("#tempOpen").style.top = (95+bookmarks.length*25)+"px";
-    document.querySelector("#urlIn").style.top = (70+bookmarks.length*25)+"px";
   }
 }
