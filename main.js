@@ -137,7 +137,7 @@ if(typeof executed === 'undefined') {
       addMark.style.color = "#ffffff";
       document.getElementById("bg").appendChild(addMark);
       let tempOpen = document.createElement("button");
-      tempOpen.addEventListener("click",() => {window.open(getURL(document.getElementById("urlIn").value))});
+      tempOpen.addEventListener("click",() => {openURL(getURL(document.getElementById("urlIn").value))});
       tempOpen.id = "tempOpen";
       tempOpen.innerHTML = "Open URL";
       tempOpen.style.position = "fixed";
