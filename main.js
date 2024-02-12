@@ -13,7 +13,8 @@ if(typeof executed === 'undefined') {
 
   window.getURL = function(url,mode) {
     if(mode) {
-      let u = url.split("https://").splice(0,1);
+      let u = url.split("https://");
+      u.splice(0,1);
       return u.join("https://");
     } else {
       return url.split("https://")[0].trim()==""?url:"https://"+url;
